@@ -153,9 +153,10 @@ def check_image_quality(image):
 
     contrast_score = float(gray.std())
 
+    # Less strict threshold for cloud deployment
     quality_ok = (
-        blur_score >= 20 and
-        contrast_score >= 20
+        blur_score >= 5 and
+        contrast_score >= 15
     )
 
     return quality_ok, blur_score, contrast_score
