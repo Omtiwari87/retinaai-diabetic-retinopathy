@@ -6,3 +6,4 @@ numpy
 pandas
 grad-cam
 opencv-python
+reportlab
