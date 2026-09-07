@@ -1,4 +1,5 @@
 
+
 import streamlit as st
 import torch
 import torch.nn as nn
@@ -150,6 +151,57 @@ if uploaded_file is not None:
 
     if width < 100 or height < 100:
         st.error("❌ Image is too small. Please upload a clear retinal/fundus image.")
+        st.stop()
+        # Blank / black image validation
+    image_array = np.array(image)
+
+    mean_brightness = image_array.mean()
+
+    if mean_brightness < 15:
+        st.error(
+            "❌ Invalid image. The uploaded image appears to be blank or too dark. "
+            "Please upload a clear retinal/fundus image."
+        )
+        st.stop()
+        # Fundus image quality check
+    check_image = image.resize((128, 128))
+    arr = np.array(check_image).astype(np.float32)
+
+    # Check center brightness
+    center = arr[32:96, 32:96].mean()
+
+    # Check corner darkness
+    corners = np.concatenate([
+        arr[:24, :24].reshape(-1, 3),
+        arr[:24, -24:].reshape(-1, 3),
+        arr[-24:, :24].reshape(-1, 3),
+        arr[-24:, -24:].reshape(-1, 3)
+    ])
+
+    corner_brightness = corners.mean()
+
+    # Retinal images usually contain noticeable reddish tones
+    red_score = (
+        arr[:, :, 0] -
+        (arr[:, :, 1] + arr[:, :, 2]) / 2
+    ).mean()
+
+    fundus_score = 0
+
+    if center > 35:
+        fundus_score += 1
+
+    if corner_brightness < center:
+        fundus_score += 1
+
+    if red_score > 5:
+        fundus_score += 1
+
+    if fundus_score < 3:
+        st.error(
+            "❌ Invalid image. This does not appear to be a "
+            "clear retinal/fundus image. Please upload a proper fundus photograph."
+        )
         st.stop()
 
     st.caption(f"Image size: {width} × {height} pixels")
