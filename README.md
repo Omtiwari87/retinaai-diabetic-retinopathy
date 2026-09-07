@@ -1,43 +1,52 @@
-# RetinaAI 🩺
+# RetinaAI — Explainable Diabetic Retinopathy Screening
 
-AI-powered diabetic retinopathy screening using retinal fundus images.
+RetinaAI is an educational/research prototype for diabetic retinopathy (DR) screening from retinal fundus images.
 
-## 📌 About
+The system combines image-quality assessment, 5-class DR severity classification, confidence estimation, and Grad-CAM explainability in a lightweight web interface.
 
-RetinaAI is an educational/research prototype that uses deep learning to classify retinal images into five diabetic retinopathy stages:
+> ⚠️ **Disclaimer:** RetinaAI is an educational/research prototype and is not a medical diagnostic system. Results should not be used as a substitute for examination by a qualified ophthalmic professional.
 
-- No DR
-- Mild DR
-- Moderate DR
-- Severe DR
-- Proliferative DR
+## 🚀 Key Features
 
-The application also provides Grad-CAM visualizations to improve model explainability.
+- 🖼️ Retinal fundus image upload
+- 🔍 Image quality assessment
+- 🧠 EfficientNet-B0 based DR classification
+- 📊 5-stage DR severity prediction
+- 📈 Class probability visualization
+- 🔥 Grad-CAM explainability heatmap
+- 🩺 Screening recommendation
+- 📄 Downloadable screening report
+- 👨‍⚕️ Tele-review workflow
+- 📝 Reviewer notes and case status
+- 🆔 Automatic case ID generation
 
-## 🚀 Features
+## 🧠 DR Classification
 
-- Retinal image upload
-- AI-based DR stage classification
-- Class probability visualization
-- Grad-CAM explainability heatmap
-- Web-based Streamlit interface
+The model predicts five stages:
 
-## 🧠 Technology
+| Class | Stage |
+|---|---|
+| 0 | No DR |
+| 1 | Mild DR |
+| 2 | Moderate DR |
+| 3 | Severe DR |
+| 4 | Proliferative DR |
 
-- Python
-- PyTorch
-- EfficientNet-B0
-- Grad-CAM
-- Streamlit
+## 🔬 System Workflow
 
-## 📊 Dataset
-
-The model was trained using the APTOS 2019 diabetic retinopathy dataset.
-
-## ⚠️ Disclaimer
-
-This project is developed for educational and research purposes only. It is not a medical diagnostic system and should not be used for clinical decisions.
-
-## 🌐 Live Demo
-
-https://retinaai-diabetic-retinopathy-8twmnnacvea3fyw3tzjj7q.streamlit.app/
+```text
+Retinal Image
+      ↓
+Image Quality Assessment
+      ↓
+EfficientNet-B0
+      ↓
+5-Class DR Classification
+      ↓
+Prediction + Confidence
+      ↓
+Grad-CAM Explainability
+      ↓
+Screening Result
+      ↓
+Report / Tele-Review
