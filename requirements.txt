@@ -5,3 +5,4 @@ pillow
 numpy
 pandas
 grad-cam
+opencv-python

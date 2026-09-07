@@ -1,4 +1,4 @@
-
+import cv2
 
 import streamlit as st
 import torch
@@ -128,7 +128,35 @@ transform = transforms.Compose([
         std=[0.229, 0.224, 0.225]
     )
 ])
+# =========================================================
+# IMAGE QUALITY ASSESSMENT (IQA)
+# =========================================================
 
+def check_image_quality(image):
+
+    image_array = np.array(image)
+
+    # Convert RGB image to grayscale
+    gray = cv2.cvtColor(
+        image_array,
+        cv2.COLOR_RGB2GRAY
+    )
+
+    # Blur detection
+    blur_score = cv2.Laplacian(
+        gray,
+        cv2.CV_64F
+    ).var()
+
+    # Contrast detection
+    contrast_score = gray.std()
+
+    quality_ok = (
+        blur_score >= 20 and
+        contrast_score >= 20
+    )
+
+    return quality_ok, blur_score, contrast_score
 
 # =========================================================
 # UPLOAD
@@ -145,6 +173,15 @@ uploaded_file = st.file_uploader(
 if uploaded_file is not None:
 
     image = Image.open(uploaded_file).convert("RGB")
+    # Image Quality Assessment
+    quality_ok, blur_score, contrast_score = check_image_quality(image)
+
+    if not quality_ok:
+        st.error(
+            "❌ Poor image quality. "
+            "Please upload a clearer retinal image."
+        )
+        st.stop()
 
     # Basic image validation
     width, height = image.size
