@@ -2,7 +2,7 @@ from datetime import datetime
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.units import inch
-import cv2
+
 import io
 
 import streamlit as st
@@ -136,25 +136,22 @@ transform = transforms.Compose([
 # =========================================================
 # IMAGE QUALITY ASSESSMENT (IQA)
 # =========================================================
-
 def check_image_quality(image):
-
     image_array = np.array(image)
 
-    # Convert RGB image to grayscale
-    gray = cv2.cvtColor(
-        image_array,
-        cv2.COLOR_RGB2GRAY
+    gray = np.array(
+        Image.fromarray(image_array).convert("L"),
+        dtype=np.float32
     )
 
-    # Blur detection
-    blur_score = cv2.Laplacian(
-        gray,
-        cv2.CV_64F
-    ).var()
+    dx = np.diff(gray, axis=1)
+    dy = np.diff(gray, axis=0)
 
-    # Contrast detection
-    contrast_score = gray.std()
+    blur_score = float(
+        (np.var(dx) + np.var(dy)) / 2
+    )
+
+    contrast_score = float(gray.std())
 
     quality_ok = (
         blur_score >= 20 and
