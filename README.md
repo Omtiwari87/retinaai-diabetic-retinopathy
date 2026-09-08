@@ -1,7 +1,9 @@
 # RetinaAI — Explainable Diabetic Retinopathy Screening
-## 🌐 Live Demo
+## 🚀 Live Demo
 
-🚀 **[Open RetinaAI Live App](https://retinaai-diabetic-retinopathy-xxxxx.streamlit.app/)**
+👉 **[Open RetinaAI App](https://retinaai-diabetic-retinopathy-9tclga2a63thje7nbxrbut.streamlit.app/)**
+
+Click the link above to open the RetinaAI diabetic retinopathy screening application.
 
 The application is deployed on Streamlit Community Cloud.
 
