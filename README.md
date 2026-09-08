@@ -1,4 +1,16 @@
 # RetinaAI — Explainable Diabetic Retinopathy Screening
+## 🌐 Live Demo
+
+🚀 **[Open RetinaAI Live App](https://retinaai-diabetic-retinopathy-xxxxx.streamlit.app/)**
+
+The application is deployed on Streamlit Community Cloud.
+
+### How to use
+
+1. Open the live app using the link above.
+2. Upload a clear retinal/fundus image.
+3. Click **Analyze Image**.
+4. View the predicted DR stage, confidence and Grad-CAM heatmap.
 
 RetinaAI is an educational/research prototype for diabetic retinopathy (DR) screening from retinal fundus images.
 
@@ -50,16 +62,5 @@ Grad-CAM Explainability
 Screening Result
       ↓
 Report / Tele-Review
-## 🌐 Live Demo
 
-🚀 **[Open RetinaAI Live App](https://retinaai-diabetic-retinopathy-xxxxx.streamlit.app/)**
-
-The application is deployed on Streamlit Community Cloud.
-
-### How to use
-
-1. Open the live app using the link above.
-2. Upload a clear retinal/fundus image.
-3. Click **Analyze Image**.
-4. View the predicted DR stage, confidence and Grad-CAM heatmap.
 
