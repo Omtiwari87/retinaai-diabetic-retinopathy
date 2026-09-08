@@ -50,4 +50,16 @@ Grad-CAM Explainability
 Screening Result
       ↓
 Report / Tele-Review
-https://retinaai-diabetic-retinopathy-9tclga2a63thje7nbxrbut.streamlit.app/
+## 🌐 Live Demo
+
+🚀 **[Open RetinaAI Live App](https://retinaai-diabetic-retinopathy-xxxxx.streamlit.app/)**
+
+The application is deployed on Streamlit Community Cloud.
+
+### How to use
+
+1. Open the live app using the link above.
+2. Upload a clear retinal/fundus image.
+3. Click **Analyze Image**.
+4. View the predicted DR stage, confidence and Grad-CAM heatmap.
+
