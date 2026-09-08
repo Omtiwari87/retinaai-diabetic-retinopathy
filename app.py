@@ -529,25 +529,25 @@ if uploaded_file is not None:
             probability_data.set_index("Stage")
         )
         # =================================================
-# DOWNLOAD PDF REPORT
-# =================================================
-# CREATE PDF REPORT
+    # DOWNLOAD PDF REPORT
+    # =================================================
+    # CREATE PDF REPORT
 
-    report_pdf = create_pdf_report(
-        predicted_name,
-        confidence,
-        probability_data,
-        blur_score,
-        contrast_score
-    )
+        report_pdf = create_pdf_report(
+            predicted_name,
+            confidence,
+            probability_data,
+            blur_score,
+            contrast_score
+        )
 
-    st.download_button(
-        label="📄 Download Screening Report",
-        data=report_pdf,
-        file_name="RetinaAI_Screening_Report.pdf",
-        mime="application/pdf",
-        use_container_width=True
-    )
+        st.download_button(
+            label="📄 Download Screening Report",
+            data=report_pdf,
+            file_name="RetinaAI_Screening_Report.pdf",
+            mime="application/pdf",
+            use_container_width=True
+        )
     # =================================================
     # TELE-REVIEW
     # =================================================
