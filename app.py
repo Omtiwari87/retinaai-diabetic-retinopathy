@@ -429,6 +429,13 @@ if uploaded_file is not None:
             "🔍 Analyze Image",
             use_container_width=True
         )
+    predicted_name = "Not analyzed"
+    predicted_class = 0
+    confidence = 0.0
+    probability_data = pd.DataFrame({
+    "Stage": class_names,
+    "Probability (%)": [0.0] * len(class_names)
+})    
 
 
     if analyze:
@@ -568,6 +575,8 @@ if uploaded_file is not None:
         "ophthalmic reviewer for further assessment."
     )
     st.markdown("### 📋 Case Summary")
+    if "predicted_name" not in locals():
+     st.stop()
 
     st.write(f"**Predicted Stage:** {predicted_name}")
     st.write(f"**Model Confidence:** {confidence:.2%}")
@@ -593,7 +602,8 @@ if uploaded_file is not None:
     # =================================================
     # GRAD-CAM
     # =================================================
-    st.subheader("🔎 Explainable AI — Grad-CAM")    
+    st.subheader("🔎 Explainable AI — Grad-CAM") 
+    input_tensor = transform(image).unsqueeze(0).to(device)   
 
     target_layers = [
         model.features[-1]
